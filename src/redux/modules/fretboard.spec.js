@@ -2,7 +2,8 @@ import React from 'react'
 import { assert } from 'chai'
 import { shallow } from 'enzyme'
 import * as Immutable from 'immutable'
-import { default as fretboardReducer, buildFretboard } from './fretboard.js'
+import { default as fretboardReducer } from './fretboard'
+import { default as buildFretboard } from '../lib/buildFretboard'
 
 describe('<App />', () => {
 
