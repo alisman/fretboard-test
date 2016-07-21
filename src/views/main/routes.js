@@ -3,6 +3,7 @@ import {Route, IndexRoute} from 'react-router'
 
 import Container from './Container'
 import IndexPage from './indexPage/IndexPage'
+import FretboardTester from './fretboardTester/fretboardTester'
 
 export const makeMainRoutes = () => {
   return (
@@ -15,7 +16,9 @@ export const makeMainRoutes = () => {
           });
         }} />
       {/* inline loading */}
-      <IndexRoute component={IndexPage} />
+      <Route component={IndexPage} />
+
+      <IndexRoute component={FretboardTester} />
 
     </Route>
   )

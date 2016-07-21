@@ -17,9 +17,11 @@ const actionTypes = {
 export default {
 
     reducer: (state = initialState, action) => {
+
         switch (action.type) {
             case actionTypes.SELECT_NOTE:
-                return selectNote(state, action.id)
+
+                return selectNote(state.noteSelection, action.id)
 
             case actionTypes.NEW_CHALLENGE:
                 //return state;

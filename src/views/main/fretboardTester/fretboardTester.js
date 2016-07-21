@@ -1,19 +1,22 @@
 import React, { PropTypes as T } from 'react';
 import {Link} from 'react-router';
 
-import styles from './styles.module.css';
-
 export class IndexPage extends React.Component {
+
+
+    handleNoteClick() {
+        debugger;
+        let state = this.props.store.getState();
+
+        this.props.store.dispatch({ type:"SELECT_NOTE", id:0 });
+    }
+
     render() {
+
         return (
-            <div className={styles.content}>
-                <h1>Hello from generated content</h1>
-                <p className={styles.padding}>
-                    For more information about the `react-gen` package and set up, check out the <a href="https://www.fullstackreact.com/articles/react-tutorial-cloning-yelp/">Blog post on building a yelp clone with React</a>.
-                </p>
-                <p>
-                    <Link to="about">About</Link>
-                </p>
+            <div>
+                <h1>Fretboard tester</h1>
+                <a onClick={this.handleNoteClick.bind(this)}>click me</a>
             </div>
         )
     }

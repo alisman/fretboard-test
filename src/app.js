@@ -19,7 +19,7 @@ let render = (routerKey = null) => {
 
   const mountNode = document.querySelector('#root');
   ReactDOM.render(
-    <App history={history}
+    <App
           store={store}
           actions={actions}
           routes={routes}
