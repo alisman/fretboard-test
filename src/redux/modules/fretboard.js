@@ -3,10 +3,11 @@ import { default as _ } from 'lodash';
 import { default as makeActionCreator } from '../lib/makeActionCreator';
 import { default as buildChallenge } from '../lib/buildChallenge';
 import { default as buildFretboard } from '../lib/buildFretboard';
+import { default as selectNote } from '../lib/selectNote';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
-const initialState = Immutable.fromJS({strings: buildFretboard(), currentChallenge: null});
+const initialState = Immutable.fromJS({strings: buildFretboard(), currentChallenge: null, errorLog:[] });
 
 const actionTypes = {
     SELECT_NOTE: 'SELECT_NOTE',
@@ -18,8 +19,8 @@ export default {
     reducer: (state = initialState, action) => {
         switch (action.type) {
             case actionTypes.SELECT_NOTE:
+                return selectNote(state, action.id)
 
-                return state;
             case actionTypes.NEW_CHALLENGE:
                 //return state;
                 state = state.set("currentChallenge", buildChallenge(state.get("strings"), action.note));

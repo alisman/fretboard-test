@@ -8,5 +8,5 @@ export default (strings, note) => {
         memo.push(...newNotes);
         return memo;
     },new Array());
-    return Immutable.fromJS({ note:note, notes:noteSet  });
+    return Immutable.fromJS({ note:note, notes:noteSet, incorrectNoteSelected:false  });
 };

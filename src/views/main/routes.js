@@ -16,6 +16,7 @@ export const makeMainRoutes = () => {
         }} />
       {/* inline loading */}
       <IndexRoute component={IndexPage} />
+
     </Route>
   )
 }
