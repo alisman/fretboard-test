@@ -38,11 +38,14 @@ export const configureStore = ({
 
     const store = finalCreateStore(
       rootReducer,
-      Object.assign({}, initialState, userInitialState)
+      initialState
     );
 
     const history = syncHistoryWithStore(historyType, store, {
-      adjustUrlOnReplay: true
+      adjustUrlOnReplay: true,
+      selectLocationState (state) {
+        return state.get('customRoutingReducer').toJS();
+      }
     })
 
     if (module.hot) {
