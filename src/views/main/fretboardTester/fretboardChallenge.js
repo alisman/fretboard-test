@@ -5,6 +5,10 @@ import String from './string'
 
 export default class FretboardChallenge extends React.Component {
 
+    componentDidMount(){
+
+
+    }
 
     buildFretboard(strings){
         return strings.map((str,i)=>{ return (<String key={i} active={ (i === this.props.activeStringIndex) } onNoteClick={this.props.onNoteClick} stringData={str} />) });
@@ -18,6 +22,7 @@ export default class FretboardChallenge extends React.Component {
             <div>
                 <h1>Fretboard Challenge</h1>
                 <p>Correct: <strong>{ store.getIn(['noteSelection','currentChallenge','correct']).size }</strong></p>
+                <p>Errors: <strong>{ store.getIn(['noteSelection','currentChallenge','error']).size }</strong></p>
                 <table>
                     <tbody>
                         {

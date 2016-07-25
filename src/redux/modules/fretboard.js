@@ -32,10 +32,12 @@ export default {
 
             case actionTypes.NEW_CHALLENGE:
                 //return state;
-                state = state.set("currentChallenge", Immutable.fromJS({ firstNote:"E", activeStringIndex:3, correct:[], error:[]  }));
+                state = state.set("currentChallenge", buildChallenge() );
+                state = state.setIn(['currentChallenge','currentNote'],'E');
                 return state;
 
             case actionTypes.SELECTION_ATTEMPT:
+
                 state = handleSelection(state,action.noteObj);
                 //return handleSelection(state,action.noteObj);
                 return state;
