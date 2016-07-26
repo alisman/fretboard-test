@@ -31,8 +31,6 @@ export default class FretboardChallenge extends React.Component {
 
     buildString(stringData){
 
-        console.log(styles);
-
         return (
             <tr className={ (this.props.active) ? styles.activeString : '' }>
                 <th>{stringData.get('rootNote')}</th>

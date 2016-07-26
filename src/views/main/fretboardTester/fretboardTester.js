@@ -5,11 +5,11 @@ import { actionCreators } from 'reducers/fretboard';
 
 export class IndexPage extends React.Component {
 
-    componentWillMount(){
+    componentDidMount(){
 
-        this.props.store.dispatch({ type:"NEW_CHALLENGE" });
+        //this.props.store.dispatch({ type:"NEW_CHALLENGE" });
 
-        this.storeState = this.props.store.getState();
+        this.props.store.dispatch(actionCreators.newTest());
 
     }
 
@@ -23,11 +23,13 @@ export class IndexPage extends React.Component {
 
         let challenge;
 
-        if (this.storeState.get('noteSelection').get('currentChallenge') !== null) {
-            challenge = <FretboardChallenge activeStringIndex={ this.storeState.get('noteSelection').get('currentChallenge').get('activeStringIndex') }
+        let storeState = this.props.store.getState();
+
+        if (storeState.get('noteSelection').get('currentChallenge') !== null) {
+            challenge = <FretboardChallenge key={storeState.get('noteSelection').get('currentChallenge').get('id')} activeStringIndex={ storeState.get('noteSelection').get('currentChallenge').get('activeStringIndex') }
                                             onNoteClick={(note) => this.handleNoteClick(note) }
-                                            fretboardData={ this.storeState.get("noteSelection").get('strings') }
-                                            challenge={ this.storeState.get('noteSelection').get('currentChallenge') }
+                                            fretboardData={ storeState.get("noteSelection").get('strings') }
+                                            challenge={ storeState.get('noteSelection').get('currentChallenge') }
                 />
         } else {
             challenge = "<h2>nope</h2>";
