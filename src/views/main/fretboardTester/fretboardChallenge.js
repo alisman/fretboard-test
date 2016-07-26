@@ -32,6 +32,8 @@ export default class FretboardChallenge extends React.Component {
 
         const store = this.context.store.getState();
 
+        const currentNote = store.getIn(['noteSelection','currentChallenge','currentNote']);
+
         const nextTestButton = (store.getIn(['noteSelection','currentChallenge','complete']) === false) ? null :
                 this.buildNextTestButton();
 
@@ -40,13 +42,13 @@ export default class FretboardChallenge extends React.Component {
                 <h1>Fretboard Challenge</h1>
                 <p>Correct: <strong>{ store.getIn(['noteSelection','currentChallenge','correct']).size }</strong></p>
                 <p>Errors: <strong>{ store.getIn(['noteSelection','currentChallenge','error']).size }</strong></p>
-                <p>Current Note: <strong>{ store.getIn(['noteSelection','currentChallenge','currentNote']) }</strong></p>
+                <p>Current Note: <strong>{ currentNote }</strong></p>
                 <div><Clock duration="10" onComplete={ this.handleTestComplete.bind(this) } /></div>
                 { nextTestButton }
                 <table>
                     <tbody>
                         {
-                            this.buildFretboard(this.props.fretboardData)
+                            this.buildFretboard(this.props.fretboardData, currentNote)
                         }
                     </tbody>
                 </table>

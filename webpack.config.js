@@ -96,6 +96,21 @@ config.module.loaders.push({
   loader: 'style!css'
 });
 
+//these are boostrap-webpack
+const bootstrapLoaders = [
+  // Needed for the css-loader when [bootstrap-webpack](https://github.com/bline/bootstrap-webpack)
+  // loads bootstrap's css.
+  { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,   loader: "url?limit=10000&mimetype=application/font-woff" },
+  { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&mimetype=application/octet-stream" },
+  { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,    loader: "file" },
+  { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&mimetype=image/svg+xml" }
+];
+
+config.module.loaders.push.apply(this,bootstrapLoaders);
+
+config.entry.push("bootstrap-webpack!./bootstrap.config.js");
+
+
 // CSS modules
 
 // postcss
