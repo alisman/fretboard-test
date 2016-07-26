@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Map } from 'immutable'
 
 import 'font-awesome/css/font-awesome.css'
 import './app.css'
@@ -23,6 +24,7 @@ let render = (routerKey = null) => {
           store={store}
           actions={actions}
           routes={routes}
+          history={history}
           routerKey={routerKey} />, mountNode);
 }
 
