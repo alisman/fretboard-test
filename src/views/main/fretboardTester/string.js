@@ -1,6 +1,4 @@
-import React, { PropTypes as T } from 'react';
-import {Link} from 'react-router';
-
+import React from 'react';
 
 export default class FretboardChallenge extends React.Component {
 
