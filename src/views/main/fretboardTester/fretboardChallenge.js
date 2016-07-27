@@ -25,7 +25,7 @@ export default class FretboardChallenge extends React.Component {
 
 
     buildFretboard(strings){
-        return strings.map((str,i)=>{ return (<String key={i} active={ (i === this.props.activeStringIndex) } onNoteClick={this.props.onNoteClick} stringData={str} />) });
+        return strings.reverse().map((str,i)=>{ return (<String show-note='true' key={i} active={ (i === this.props.activeStringIndex) } onNoteClick={this.props.onNoteClick} stringData={str} />) });
     }
 
     render() {
@@ -38,13 +38,27 @@ export default class FretboardChallenge extends React.Component {
                 this.buildNextTestButton();
 
         return (
-            <div>
-                <h1>Fretboard Challenge</h1>
-                <p>Correct: <strong>{ store.getIn(['noteSelection','currentChallenge','correct']).size }</strong></p>
-                <p>Errors: <strong>{ store.getIn(['noteSelection','currentChallenge','error']).size }</strong></p>
-                <p>Current Note: <strong>{ currentNote }</strong></p>
-                <div><Clock duration="60" onComplete={ this.handleTestComplete.bind(this) } /></div>
-                { nextTestButton }
+            <div className="fretboard-test">
+
+                <div className="reports">
+                <div className="report-badge"><i className="fa fa-thumbs-down"></i><br />
+                    { store.getIn(['noteSelection','currentChallenge','error']).size }
+                </div>
+
+                <div className="report-badge"><i className="fa fa-thumbs-up"></i><br />
+                    { store.getIn(['noteSelection','currentChallenge','correct']).size }
+                                </div>
+
+                    <div className="report-badge"><i className="fa fa-clock-o"></i><br />
+                        <Clock duration="60" onComplete={ this.handleTestComplete.bind(this) } />
+                    </div>
+
+                </div>
+
+
+                <p>Please find { currentNote }</p>
+
+
                 <table className="fretboard">
                     <tbody>
                         {
@@ -52,6 +66,8 @@ export default class FretboardChallenge extends React.Component {
                         }
                     </tbody>
                 </table>
+
+                <p>  { nextTestButton } </p>
 
             </div>
         )

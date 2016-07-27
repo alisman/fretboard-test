@@ -11,5 +11,7 @@ module.exports = {
 
         "scaffolding": true,
         "type": true,
+        "badges":true,
+        "utilities":true
     }
 };

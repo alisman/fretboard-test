@@ -8,11 +8,8 @@ export class Header extends React.Component {
     const {title} = this.props;
 
     return (
-      <div className={styles.topbar}>
+      <div>
         <Link className={styles.logo} to="/"><h1>{title}</h1></Link>
-        <section>
-          Fullstack.io
-        </section>
       </div>
     )
   }

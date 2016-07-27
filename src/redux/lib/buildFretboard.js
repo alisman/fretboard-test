@@ -4,12 +4,12 @@ export default () => {
 
     const strings = [
 
-        {rootNote: "E", notes: ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "E"]},
-        {rootNote: "A", notes: ["A", "A#", "B", "C", "C#", "D", "E", "F", "F#", "G", "G#", "A"]},
-        {rootNote: "D", notes: ["D", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"]},
-        {rootNote: "G", notes: ["G", "G#", "A", "A#", "B", "C", "C#", "D", "E", "F", "F#", "G"]},
-        {rootNote: "B", notes: ["B", "C", "C#", "D", "E", "F", "F#", "G", "G#", "A", "A#", "B"]},
-        {rootNote: "E", notes: ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "E"]}
+        {rootNote: 'E', notes: ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E']},
+        {rootNote: 'A', notes: ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A']},
+        {rootNote: 'D', notes: ['D','D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D']},
+        {rootNote: 'G', notes: ['G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D','D#', 'E', 'F', 'F#', 'G']},
+        {rootNote: 'B', notes: ['B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']},
+        {rootNote: 'E', notes: ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E']}
 
     ];
 
@@ -18,7 +18,7 @@ export default () => {
         str.notes.forEach((note, i) => {
             str.notes[i] = {note: note, id: noteId};
             noteId++;
-        })
+        });
     });
 
     return Immutable.fromJS(strings);

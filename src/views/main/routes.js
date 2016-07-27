@@ -1,9 +1,8 @@
-import React from 'react'
-import {Route, IndexRoute} from 'react-router'
+import React from 'react';
+import {Route, IndexRoute} from 'react-router';
 
 import Container from './Container'
-import IndexPage from './indexPage/IndexPage'
-import FretboardTester from './fretboardTester/fretboardTester'
+import FretboardTester from './fretboardTester/fretboardTester';
 
 export const makeMainRoutes = () => {
   return (
@@ -16,7 +15,6 @@ export const makeMainRoutes = () => {
           });
         }} />
       {/* inline loading */}
-      <Route component={IndexPage} />
 
       <IndexRoute component={FretboardTester} />
 

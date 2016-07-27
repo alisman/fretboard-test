@@ -32,12 +32,12 @@ export class IndexPage extends React.Component {
                                             challenge={ storeState.get('noteSelection').get('currentChallenge') }
                 />
         } else {
-            challenge = "<h2>nope</h2>";
+            challenge = "<h2>Error: no challenge</h2>";
         }
 
         return (
             <div>
-                <h1>Fretboard tester</h1>
+
                 { challenge }
                  </div>
         )
