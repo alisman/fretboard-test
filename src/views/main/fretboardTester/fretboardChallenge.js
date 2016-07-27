@@ -43,9 +43,9 @@ export default class FretboardChallenge extends React.Component {
                 <p>Correct: <strong>{ store.getIn(['noteSelection','currentChallenge','correct']).size }</strong></p>
                 <p>Errors: <strong>{ store.getIn(['noteSelection','currentChallenge','error']).size }</strong></p>
                 <p>Current Note: <strong>{ currentNote }</strong></p>
-                <div><Clock duration="10" onComplete={ this.handleTestComplete.bind(this) } /></div>
+                <div><Clock duration="60" onComplete={ this.handleTestComplete.bind(this) } /></div>
                 { nextTestButton }
-                <table>
+                <table className="fretboard">
                     <tbody>
                         {
                             this.buildFretboard(this.props.fretboardData, currentNote)

@@ -1,8 +1,5 @@
 import React, { PropTypes as T } from 'react';
 import {Link} from 'react-router';
-import Clock from './clock';
-
-import styles from './style.module.css';
 
 
 export default class FretboardChallenge extends React.Component {
@@ -15,6 +12,7 @@ export default class FretboardChallenge extends React.Component {
 
     componentWillMount(){
 
+        console.log('hello');
 
     }
 
@@ -23,7 +21,7 @@ export default class FretboardChallenge extends React.Component {
         if (this.props.active) {
             this.props.onNoteClick(note);
         } else {
-            alert("NO");
+            // record error
         }
 
     }
@@ -32,8 +30,7 @@ export default class FretboardChallenge extends React.Component {
     buildString(stringData){
 
         return (
-            <tr className={ (this.props.active) ? styles.activeString : '' }>
-                <th>{stringData.get('rootNote')}</th>
+            <tr className={ (this.props.active) ? 'active-string' : '' }>
                 {
                     stringData.get('notes').map((note)=>{
                         return this.buildNote(note);
@@ -45,8 +42,10 @@ export default class FretboardChallenge extends React.Component {
 
     buildNote(note){
         return (
-            <td key={note.get('id')}><a onClick={ ()=> this.handleNoteClick(note) }>{ note.get('note') }</a></td>
-        )
+            <td key={note.get('id')}><div className='note' onClick={ ()=> this.handleNoteClick(note) }>
+                <i className="fa fa-circle note-hit" aria-hidden="true"></i>{ note.get('note') }
+            </div></td>
+        );
     }
 
     render() {

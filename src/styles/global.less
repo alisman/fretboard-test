@@ -1,4 +1,53 @@
-td {
+// fretboard
 
-  background-color:@btn-default-color;
+@stringColor: #999;
+
+.fretboard {
+
+  tr td {
+    border-width:1px;
+
+    div.note {
+      width:50px;
+      text-align:center;
+
+      .note-hit {
+        position:relative;
+        top:-10px;
+        opacity:0;
+        color:@stringColor;
+      }
+
+      &:hover {
+
+        .note-hit {
+          opacity:1;
+        }
+
+      }
+
+    }
+
+    &:nth-child(n+2) {
+      border-width:1px;
+      border-style:solid;
+      border-top-color:@stringColor;
+      border-left-color:@stringColor;
+      border-right-color:@stringColor;
+      border-bottom:none;
+    }
+
+
+  }
+
+  tr:last-child td {
+    border-bottom:none;
+    border-left:none;
+    border-right:none;
+  }
+
+  tr.active-string td {
+    border-top-color:orange;
+  }
+
 }

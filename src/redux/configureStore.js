@@ -7,54 +7,54 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { rootReducer, actions, initialState } from './rootReducer';
 
 export const configureStore = ({
-  historyType = browserHistory,
-  userInitialState = {}}) => {
+    historyType = browserHistory,
+    userInitialState = {}}) => {
 
     let middleware = [
-      createApiMiddleware({
-        baseUrl: __ROOT_URL__,
-        headers: {
-          'X-Requested-By': 'wordtwist client'
-        }
-      }),
-      thunkMiddleware,
-      routerMiddleware(historyType)
-    ]
+        createApiMiddleware({
+            baseUrl: __ROOT_URL__,
+            headers: {
+                'X-Requested-By': 'wordtwist client'
+            }
+        }),
+        thunkMiddleware,
+        routerMiddleware(historyType)
+    ];
 
     let tools = [];
     if (__DEBUG__) {
-      const DevTools = require('containers/DevTools/DevTools').default;
-      let devTools = window.devToolsExtension ? window.devToolsExtension : DevTools.instrument;
-      if (typeof devTools === 'function') {
-        tools.push(devTools())
-      }
+        const DevTools = require('containers/DevTools/DevTools').default;
+        let devTools = window.devToolsExtension ? window.devToolsExtension : DevTools.instrument;
+        if (typeof devTools === 'function') {
+            tools.push(devTools());
+        }
     }
 
     let finalCreateStore;
     finalCreateStore = compose(
-      applyMiddleware(...middleware),
-      ...tools
+        applyMiddleware(...middleware),
+        ...tools
     )(createStore);
 
     const store = finalCreateStore(
-      rootReducer,
-      initialState
+        rootReducer,
+        initialState
     );
 
     const history = syncHistoryWithStore(historyType, store, {
-      adjustUrlOnReplay: true,
-      selectLocationState (state) {
-        return state.get('customRoutingReducer').toJS();
-      }
-    })
+        adjustUrlOnReplay: true,
+        selectLocationState (state) {
+            return state.get('customRoutingReducer').toJS();
+        }
+    });
 
     if (module.hot) {
-      module.hot.accept('./rootReducer', () => {
-        const {rootReducer} = require('./rootReducer');
-        store.replaceReducer(rootReducer);
-      });
+        module.hot.accept('./rootReducer', () => {
+            const {rootReducer} = require('./rootReducer');
+            store.replaceReducer(rootReducer);
+        });
     }
 
     const boundActions = bindActionCreatorsToStore(actions, store);
-    return {store, actions: boundActions, history}
-}
+    return {store, actions: boundActions, history};
+};
