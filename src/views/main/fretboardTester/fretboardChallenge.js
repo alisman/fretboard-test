@@ -25,7 +25,9 @@ export default class FretboardChallenge extends React.Component {
 
 
     buildFretboard(strings){
-        return strings.reverse().map((str,i)=>{ return (<String show-note='true' key={i} active={ (i === this.props.activeStringIndex) } onNoteClick={this.props.onNoteClick} stringData={str} />) });
+        return strings.reverse().map((str,i)=>{ return (<String key={i} active={ (i === this.props.activeStringIndex) }
+                                                                onNoteClick={this.props.onNoteClick}
+                                                                stringData={str} />) });
     }
 
     render() {

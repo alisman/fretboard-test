@@ -20,7 +20,7 @@ describe('<App />', () => {
     it("a dummy action without state appropriate initial state", () => {
         let state = fretboardReducer.reducer(undefined, { type: "FOO"});
         assert.equal(state.get("strings").get(0).get("notes").get(0).get("id"), 0);
-        assert.equal(state.get("strings").get(1).get("notes").get(0).get("id"), 12);
+        assert.equal(state.get("strings").get(1).get("notes").get(0).get("id"), 13);
     });
 
 

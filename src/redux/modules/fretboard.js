@@ -61,6 +61,7 @@ export default {
                 //state = state.setIn(['currentChallenge','currentNote'])
 
                 return state;
+
             default:
                 return state;
         }

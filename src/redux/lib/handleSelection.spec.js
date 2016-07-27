@@ -25,12 +25,14 @@ describe('selectNote', () => {
 
         state = state.setIn(['currentChallenge','currentNote'],'E');
 
-        let newState = handleSelection(state, Immutable.Map({ note:"E" }));
+        let newState = handleSelection(state, Immutable.Map({ note:'E' }));
 
         assert.equal(newState.getIn(['currentChallenge','correct']).size, 1);
         assert.equal(newState.getIn(['currentChallenge','correct',0]).get('note'),'E');
 
-        newState = handleSelection(newState, Immutable.Map({ note:"E" }));
+        let newNote = newState.getIn(['currentChallenge', 'currentNote']);
+
+        newState = handleSelection(newState, Immutable.Map({ note:newNote }));
 
         assert.equal(newState.getIn(['currentChallenge','correct']).size, 2);
 
