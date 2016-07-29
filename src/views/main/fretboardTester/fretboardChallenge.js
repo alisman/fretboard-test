@@ -30,13 +30,20 @@ export default class FretboardChallenge extends React.Component {
                                                                 stringData={str} />) });
     }
 
+    getStoreState() {
+
+        return this.context.store.getState();
+
+    }
+
+
     render() {
 
-        const store = this.context.store.getState();
+        const storeState = this.getStoreState();
 
-        const currentNote = store.getIn(['noteSelection','currentChallenge','currentNote']);
+        const currentNote = storeState.getIn(['noteSelection','currentChallenge','currentNote']);
 
-        const nextTestButton = (store.getIn(['noteSelection','currentChallenge','complete']) === false) ? null :
+        const nextTestButton = (storeState.getIn(['noteSelection','currentChallenge','complete']) === false) ? null :
                 this.buildNextTestButton();
 
         return (
@@ -44,11 +51,11 @@ export default class FretboardChallenge extends React.Component {
 
                 <div className="reports">
                 <div className="report-badge"><i className="fa fa-thumbs-down"></i><br />
-                    { store.getIn(['noteSelection','currentChallenge','error']).size }
+                    { storeState.getIn(['noteSelection','currentChallenge','error']).size }
                 </div>
 
                 <div className="report-badge"><i className="fa fa-thumbs-up"></i><br />
-                    { store.getIn(['noteSelection','currentChallenge','correct']).size }
+                    { storeState.getIn(['noteSelection','currentChallenge','correct']).size }
                                 </div>
 
                     <div className="report-badge"><i className="fa fa-clock-o"></i><br />
