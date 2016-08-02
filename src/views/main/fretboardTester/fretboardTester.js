@@ -3,10 +3,22 @@ import {Link} from 'react-router';
 import FretboardChallenge from './fretboardChallenge';
 import { actionCreators } from 'reducers/fretboard';
 import HistoryChart from './charts/history';
+import RestartModal from './modals/restartModal';
+import TestDuration from './forms/testDuration';
 
 export class IndexPage extends React.Component {
 
+    componentWillMount(){
+        this.state = { showModal:false };
+    }
+
     componentDidMount(){
+
+    }
+
+    handleChangeDuration(){
+
+        this.props.store.dispatch(actionCreators.changeTestDuration(15,false));
 
     }
 
@@ -16,15 +28,30 @@ export class IndexPage extends React.Component {
 
     }
 
+    showModal(storeState){
+
+        switch(storeState.get('noteSelection').get('currentModal')) {
+            case "CHANGE_DURATION_CONFIRMATION":
+                return <RestartModal show={false} />;
+        }
+
+    }
+
+    getStoreState(){
+
+        return this.props.store.getState();
+
+    }
+
     render() {
 
         let challenge;
 
-        let storeState = this.props.store.getState();
+        let storeState = this.getStoreState();
 
         if (storeState.get('noteSelection').get('currentChallenge') !== null) {
 
-            challenge = <FretboardChallenge key={storeState.get('noteSelection').get('currentChallenge').get('id')} activeStringIndex={ storeState.get('noteSelection').get('currentChallenge').get('activeStringIndex') }
+            challenge = <FretboardChallenge key={storeState.get('noteSelection').get('currentChallenge').get('id')}
                                             onNoteClick={(note) => this.handleNoteClick(note) }
                                             fretboardData={ storeState.get("noteSelection").get('strings') }
                                             challenge={ storeState.get('noteSelection').get('currentChallenge') }
@@ -44,9 +71,14 @@ export class IndexPage extends React.Component {
                 <div className="section" id="stats-area">
                     <HistoryChart data={storeState.getIn(['noteSelection','testHistory'])}  />
                 </div>
+
+                <a onClick={ ()=>this.handleChangeDuration() }>Change test duration</a>
+
+                { this.showModal(storeState) }
+
             </div>
-        )
+        );
     }
 }
-
+ //moo
 export default IndexPage;

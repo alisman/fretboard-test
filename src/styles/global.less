@@ -62,6 +62,8 @@
 
 .reports {
 
+  display:inline-flex;
+
   .report-badge {
     background-color: #ccc;
     padding: 20px;
@@ -70,6 +72,26 @@
     min-width: 80px;
     text-align: center;
     margin:10px;
+
+    &.play-button {
+      cursor:pointer;
+      background-color:blue;
+      &:hover {
+        background-color:darkblue
+      }
+    }
+
+    .fa-play {
+
+      padding-top:12px;
+      paddin-left:7px;
+
+      &:after, &:before {
+        font-size:25px;
+      }
+
+    }
+
   }
 
 }
@@ -93,5 +115,9 @@
   padding-bottom:30px;
 
 
+}
+
+.modal {
+  color:#666;
 }
 

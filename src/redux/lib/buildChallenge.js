@@ -1,15 +1,18 @@
 import { default as Immutable } from 'immutable';
+import getRandomNote from '../lib/getRandomNote';
+import getRandomString from '../lib/getRandomString';
 
-export default () => {
+export default (started = false) => {
 
     let challenge = {
         id: Date.now(),
-        currentNote: null,
+        currentNote: getRandomNote(),
+        activeStringIndex: getRandomString(),
         complete: false,
         started:false,
-        activeStringIndex: null,
         correct: [],
         error: [],
+        started,
         incorrectNoteSelected: false
     };
 

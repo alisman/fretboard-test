@@ -25,12 +25,12 @@ export default class FretboardChallenge extends React.Component {
     }
 
     buildNextTestButton() {
-        return <div className="report-badge" onClick={ ()=> this.startNewTest() }><i className="fa fa-play"></i></div>;
+        return <div className="report-badge play-button" onClick={ ()=> this.startNewTest() }><i className="fa fa-play"></i></div>;
     }
 
-    buildClock() {
+    buildClock(storeState) {
         return <div className="report-badge"><i className="fa fa-clock-o"></i><br />
-            <Clock duration="10" onComplete={ this.handleTestComplete.bind(this) }/>
+            <Clock duration={ storeState.getIn(['noteSelection','testDuration']) } onComplete={ this.handleTestComplete.bind(this) }/>
         </div>
     }
 
@@ -39,11 +39,11 @@ export default class FretboardChallenge extends React.Component {
     }
 
 
-    buildFretboard(strings) {
-        return strings.reverse().map((str, i)=> {
-            return (<String key={i} active={ (i === this.props.activeStringIndex) }
+    buildFretboard(storeState) {
+        return storeState.getIn(['noteSelection','strings']).reverse().map((str, i)=> {
+            return (<String key={i} active={ (this.isTestActive(storeState) && i === storeState.get('noteSelection').get('currentChallenge').get('activeStringIndex')) }
                             onNoteClick={this.props.onNoteClick}
-                            stringData={str}/>)
+                            stringData={str}/>);
         });
     }
 
@@ -67,7 +67,7 @@ export default class FretboardChallenge extends React.Component {
 
         const currentNote = storeState.getIn(['noteSelection', 'currentChallenge', 'currentNote']);
 
-        const clockOrStartButton = (this.isTestActive(storeState)) ? this.buildClock() :  this.buildNextTestButton();
+        const clockOrStartButton = (this.isTestActive(storeState)) ? this.buildClock(storeState) :  this.buildNextTestButton();
 
         const instruction = (this.isTestActive(storeState)) ? <p>Please find { currentNote }</p> : <p>&nbsp;</p>
 
@@ -94,7 +94,7 @@ export default class FretboardChallenge extends React.Component {
                 <table className="fretboard">
                     <tbody>
                     {
-                        this.buildFretboard(this.props.fretboardData, currentNote)
+                        this.buildFretboard(storeState, currentNote)
                     }
                     </tbody>
                 </table>

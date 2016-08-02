@@ -3,17 +3,6 @@ import React from 'react';
 export default class FretboardChallenge extends React.Component {
 
 
-    renderFretboard(){
-
-
-    }
-
-    componentWillMount(){
-
-        console.log('hello');
-
-    }
-
     handleNoteClick(note){
 
         if (this.props.active) {

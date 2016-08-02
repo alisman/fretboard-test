@@ -7,14 +7,6 @@ import FretboardTester from './fretboardTester/fretboardTester';
 export const makeMainRoutes = () => {
   return (
     <Route path="/" component={Container}>
-      {/* Lazy-loading */}
-      <Route path="about" getComponent={(location, cb) => {
-          require.ensure([], (require) => {
-            const mod = require('./about/About');
-            cb(null, mod.default);
-          });
-        }} />
-      {/* inline loading */}
 
       <IndexRoute component={FretboardTester} />
 
