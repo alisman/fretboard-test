@@ -6,12 +6,12 @@ import { actionCreators } from 'reducers/fretboard';
 
 export default class FretboardChallenge extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
 
 
     }
 
-    handleTestComplete(){
+    handleTestComplete() {
 
         if (window.localStorage) {
             //let history = window.localStorage.getItem("fretboardTestHistory");
@@ -24,8 +24,14 @@ export default class FretboardChallenge extends React.Component {
         this.context.store.dispatch(actionCreators.testComplete());
     }
 
-    buildNextTestButton(){
-        return <a onClick={ ()=> this.startNewTest() }>next test</a>;
+    buildNextTestButton() {
+        return <div className="report-badge" onClick={ ()=> this.startNewTest() }><i className="fa fa-play"></i></div>;
+    }
+
+    buildClock() {
+        return <div className="report-badge"><i className="fa fa-clock-o"></i><br />
+            <Clock duration="10" onComplete={ this.handleTestComplete.bind(this) }/>
+        </div>
     }
 
     startNewTest() {
@@ -33,10 +39,12 @@ export default class FretboardChallenge extends React.Component {
     }
 
 
-    buildFretboard(strings){
-        return strings.reverse().map((str,i)=>{ return (<String key={i} active={ (i === this.props.activeStringIndex) }
-                                                                onNoteClick={this.props.onNoteClick}
-                                                                stringData={str} />) });
+    buildFretboard(strings) {
+        return strings.reverse().map((str, i)=> {
+            return (<String key={i} active={ (i === this.props.activeStringIndex) }
+                            onNoteClick={this.props.onNoteClick}
+                            stringData={str}/>)
+        });
     }
 
     getStoreState() {
@@ -45,31 +53,35 @@ export default class FretboardChallenge extends React.Component {
 
     }
 
+    isTestActive(storeState) {
+
+        return (storeState.getIn(['noteSelection', 'currentChallenge', 'complete']) === false);
+
+    }
+
 
     render() {
 
         const storeState = this.getStoreState();
 
-        const currentNote = storeState.getIn(['noteSelection','currentChallenge','currentNote']);
+        const currentNote = storeState.getIn(['noteSelection', 'currentChallenge', 'currentNote']);
 
-        const nextTestButton = (storeState.getIn(['noteSelection','currentChallenge','complete']) === false) ? null :
-                this.buildNextTestButton();
+        const clockOrStartButton = (this.isTestActive(storeState)) ? this.buildClock() :  this.buildNextTestButton();
 
         return (
             <div className="fretboard-test">
 
                 <div className="reports">
-                <div className="report-badge"><i className="fa fa-thumbs-down"></i><br />
-                    { storeState.getIn(['noteSelection','currentChallenge','error']).size }
-                </div>
 
-                <div className="report-badge"><i className="fa fa-thumbs-up"></i><br />
-                    { storeState.getIn(['noteSelection','currentChallenge','correct']).size }
-                                </div>
-
-                    <div className="report-badge"><i className="fa fa-clock-o"></i><br />
-                        <Clock duration="10" onComplete={ this.handleTestComplete.bind(this) } />
+                    <div className="report-badge"><i className="fa fa-thumbs-down"></i><br />
+                        { storeState.getIn(['noteSelection', 'currentChallenge', 'error']).size }
                     </div>
+
+                    <div className="report-badge"><i className="fa fa-thumbs-up"></i><br />
+                        { storeState.getIn(['noteSelection', 'currentChallenge', 'correct']).size }
+                    </div>
+
+                    { clockOrStartButton }
 
                 </div>
 
@@ -79,13 +91,11 @@ export default class FretboardChallenge extends React.Component {
 
                 <table className="fretboard">
                     <tbody>
-                        {
-                            this.buildFretboard(this.props.fretboardData, currentNote)
-                        }
+                    {
+                        this.buildFretboard(this.props.fretboardData, currentNote)
+                    }
                     </tbody>
                 </table>
-
-                <p>  { nextTestButton } </p>
 
             </div>
         )
