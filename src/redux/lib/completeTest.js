@@ -1,5 +1,4 @@
-
-import { List, Map } from 'immutable'
+import { List, Map } from 'immutable';
 
 export default (state) => {
 
@@ -11,7 +10,7 @@ export default (state) => {
             error: state.getIn(['currentChallenge', 'correct'])
         };
 
-        return testHistory.push(historyItem);
+        return testHistory.push(Map(historyItem));
     });
 
     return newState;
