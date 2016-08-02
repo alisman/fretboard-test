@@ -8,7 +8,7 @@ import completeTest from '../lib/completeTest';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
-const initialState = Immutable.fromJS({strings: buildFretboard(), testDuration:20, testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
+const initialState = Immutable.fromJS({strings: buildFretboard(), testDuration:10, testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
 
 const actionTypes = {
     SELECT_NOTE: 'SELECT_NOTE',

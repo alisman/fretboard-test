@@ -15,7 +15,7 @@ export default (state, noteObj) => {
 
         if (state.getIn(['currentChallenge', 'currentNote']) === noteObj.get('note')) {
 
-            console.log("start");
+            //correct selection!
 
             newState = state.updateIn(['currentChallenge', 'correct'],
                     list => list.push( noteObj )
@@ -28,12 +28,14 @@ export default (state, noteObj) => {
 
         } else {
 
-            console.log("error");
-
+            //incorrect selection
 
             newState = state.updateIn(['currentChallenge', 'error'],
                     list => list.push(noteObj)
             );
+
+
+
         }
 
         return newState;

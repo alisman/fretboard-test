@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import FretboardChallenge from './fretboardChallenge';
 import { actionCreators } from 'reducers/fretboard';
 import HistoryChart from './charts/history';
+import ErrorChart from './charts/errors';
 import RestartModal from './modals/restartModal';
 import TestDuration from './forms/testDuration';
 
@@ -70,6 +71,9 @@ export class IndexPage extends React.Component {
                 </div>
                 <div className="section" id="stats-area">
                     <HistoryChart data={storeState.getIn(['noteSelection','testHistory'])}  />
+
+                    <ErrorChart data={storeState.getIn(['noteSelection','testHistory'])} />
+
                 </div>
 
                 <a onClick={ ()=>this.handleChangeDuration() }>Change test duration</a>
@@ -80,5 +84,5 @@ export class IndexPage extends React.Component {
         );
     }
 }
- //moo
+
 export default IndexPage;
