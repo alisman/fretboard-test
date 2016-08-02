@@ -70,9 +70,12 @@ export class IndexPage extends React.Component {
                     { challenge }
                 </div>
                 <div className="section" id="stats-area">
-                    <HistoryChart data={storeState.getIn(['noteSelection','testHistory'])}  />
 
-                    <ErrorChart data={storeState.getIn(['noteSelection','testHistory'])} />
+
+                        <div><HistoryChart data={storeState.getIn(['noteSelection','testHistory'])}  /></div>
+                        <div><ErrorChart data={storeState.getIn(['noteSelection','testHistory'])} />
+
+                    </div>
 
                 </div>
 

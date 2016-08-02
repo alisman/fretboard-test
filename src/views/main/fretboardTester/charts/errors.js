@@ -1,4 +1,4 @@
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'Recharts';
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'Recharts';
 import React from 'react';
 import _ from 'lodash';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -38,6 +38,7 @@ class ErrorBarChart extends React.Component {
         };
 
         _.each(this.props.data.toJS(), function (report) {
+
             _.each(report.error, (err)=> {
                 notes[err.note] = notes[err.note] + 1;
             });
@@ -49,18 +50,16 @@ class ErrorBarChart extends React.Component {
             arr.push({name: key, c: item});
         });
 
-        console.log(arr);
-
-        console.log(moo);
-
 
         return (
-            <BarChart width={600} height={300} data={arr}>
+            <ResponsiveContainer>
+            <BarChart data={arr}>
                 <XAxis dataKey='name'/>
-                <YAxis />
+                <YAxis domain={[0, 'dataMax + 10']} />
                 <CartesianGrid strokeDasharray='3 3'/>
                 <Bar dataKey='c' fill='#8884d8'/>
             </BarChart>
+                </ResponsiveContainer>
         );
     }
 }
