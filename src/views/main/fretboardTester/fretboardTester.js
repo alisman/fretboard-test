@@ -8,10 +8,6 @@ export class IndexPage extends React.Component {
 
     componentDidMount(){
 
-        //this.props.store.dispatch({ type:"NEW_CHALLENGE" });
-
-        this.props.store.dispatch(actionCreators.newTest());
-
     }
 
     handleNoteClick(noteObj) {

@@ -35,7 +35,7 @@ export default class FretboardChallenge extends React.Component {
     }
 
     startNewTest() {
-        this.context.store.dispatch(actionCreators.newTest());
+        this.context.store.dispatch(actionCreators.newTest(true));
     }
 
 
@@ -55,7 +55,8 @@ export default class FretboardChallenge extends React.Component {
 
     isTestActive(storeState) {
 
-        return (storeState.getIn(['noteSelection', 'currentChallenge', 'complete']) === false);
+        return (storeState.getIn(['noteSelection', 'currentChallenge', 'complete']) === false &&
+                storeState.getIn(['noteSelection', 'currentChallenge', 'started']) === true);
 
     }
 
@@ -67,6 +68,8 @@ export default class FretboardChallenge extends React.Component {
         const currentNote = storeState.getIn(['noteSelection', 'currentChallenge', 'currentNote']);
 
         const clockOrStartButton = (this.isTestActive(storeState)) ? this.buildClock() :  this.buildNextTestButton();
+
+        const instruction = (this.isTestActive(storeState)) ? <p>Please find { currentNote }</p> : <p>&nbsp;</p>
 
         return (
             <div className="fretboard-test">
@@ -86,8 +89,7 @@ export default class FretboardChallenge extends React.Component {
                 </div>
 
 
-                <p>Please find { currentNote }</p>
-
+                { instruction }
 
                 <table className="fretboard">
                     <tbody>

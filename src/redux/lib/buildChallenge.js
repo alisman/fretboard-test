@@ -1,5 +1,17 @@
 import { default as Immutable } from 'immutable';
 
 export default () => {
-    return Immutable.fromJS({ id:Date.now() , currentNote:null, complete:false, activeStringIndex:0, correct:[], error:[], incorrectNoteSelected:false  });
+
+    let challenge = {
+        id: Date.now(),
+        currentNote: null,
+        complete: false,
+        started:false,
+        activeStringIndex: null,
+        correct: [],
+        error: [],
+        incorrectNoteSelected: false
+    };
+
+    return Immutable.fromJS(challenge);
 };

@@ -10,7 +10,7 @@ import completeTest from '../lib/completeTest';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
-const initialState = Immutable.fromJS({strings: buildFretboard(), testHistory:[], currentChallenge: null, errorLog: []});
+const initialState = Immutable.fromJS({strings: buildFretboard(), testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
 
 const actionTypes = {
     SELECT_NOTE: 'SELECT_NOTE',
@@ -25,7 +25,7 @@ export const actionCreators = {
     newChallenge: makeActionCreator(actionTypes.NEW_CHALLENGE, 'note'),
     selectionAttempt: makeActionCreator(actionTypes.SELECTION_ATTEMPT, 'noteObj'),
     testComplete: makeActionCreator(actionTypes.TEST_COMPLETE),
-    newTest: makeActionCreator(actionTypes.NEW_TEST)
+    newTest: makeActionCreator(actionTypes.NEW_TEST, 'started')
 }
 
 export default {
@@ -48,7 +48,8 @@ export default {
 
                 const newChallenge = buildChallenge().merge({
                     currentNote: getRandomNote(),
-                    activeStringIndex: getRandomString()
+                    activeStringIndex: getRandomString(),
+                    started:(action.started === true)
                 });
 
                 state = state.set("currentChallenge", newChallenge);
