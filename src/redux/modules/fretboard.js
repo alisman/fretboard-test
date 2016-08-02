@@ -10,7 +10,7 @@ import completeTest from '../lib/completeTest';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
-const initialState = Immutable.fromJS({strings: buildFretboard(), currentChallenge: null, errorLog:[] });
+const initialState = Immutable.fromJS({strings: buildFretboard(), testHistory:[], currentChallenge: null, errorLog: []});
 
 const actionTypes = {
     SELECT_NOTE: 'SELECT_NOTE',
@@ -23,9 +23,9 @@ const actionTypes = {
 export const actionCreators = {
     selectNote: makeActionCreator(actionTypes.SELECT_NOTE, 'id'),
     newChallenge: makeActionCreator(actionTypes.NEW_CHALLENGE, 'note'),
-    selectionAttempt:makeActionCreator(actionTypes.SELECTION_ATTEMPT,'noteObj'),
-    testComplete:makeActionCreator(actionTypes.TEST_COMPLETE),
-    newTest:makeActionCreator(actionTypes.NEW_TEST)
+    selectionAttempt: makeActionCreator(actionTypes.SELECTION_ATTEMPT, 'noteObj'),
+    testComplete: makeActionCreator(actionTypes.TEST_COMPLETE),
+    newTest: makeActionCreator(actionTypes.NEW_TEST)
 }
 
 export default {
@@ -36,7 +36,7 @@ export default {
 
             case actionTypes.SELECTION_ATTEMPT:
 
-                state = handleSelection(state,action.noteObj);
+                state = handleSelection(state, action.noteObj);
                 //return handleSelection(state,action.noteObj);
                 return state;
 
@@ -46,19 +46,13 @@ export default {
 
             case actionTypes.NEW_TEST:
 
-
                 const newChallenge = buildChallenge().merge({
-                    currentNote:getRandomNote(),
-                    activeStringIndex:getRandomString()
+                    currentNote: getRandomNote(),
+                    activeStringIndex: getRandomString()
                 });
 
-                console.log(newChallenge.toJS());
+                state = state.set("currentChallenge", newChallenge);
 
-
-                state = state.set("currentChallenge", newChallenge );
-
-
-                //state = state.setIn(['currentChallenge','currentNote'])
 
                 return state;
 

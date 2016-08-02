@@ -2,6 +2,7 @@ import React, { PropTypes as T } from 'react';
 import {Link} from 'react-router';
 import FretboardChallenge from './fretboardChallenge';
 import { actionCreators } from 'reducers/fretboard';
+//import HistoryChart from './charts/history';
 
 export class IndexPage extends React.Component {
 
@@ -39,6 +40,8 @@ export class IndexPage extends React.Component {
             <div>
 
                 { challenge }
+
+
                  </div>
         )
     }
