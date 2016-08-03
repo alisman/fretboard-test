@@ -5,7 +5,7 @@ import { actionCreators } from 'reducers/fretboard';
 import HistoryChart from './charts/history';
 import ErrorChart from './charts/errors';
 import RestartModal from './modals/restartModal';
-import TestDuration from './forms/testDuration';
+import TestDurationControl from './controls/testDuration';
 
 export class IndexPage extends React.Component {
 
@@ -17,11 +17,6 @@ export class IndexPage extends React.Component {
 
     }
 
-    handleChangeDuration(){
-
-        this.props.store.dispatch(actionCreators.changeTestDuration(15,false));
-
-    }
 
     handleNoteClick(noteObj) {
 
@@ -79,7 +74,7 @@ export class IndexPage extends React.Component {
 
                 </div>
 
-                <a onClick={ ()=>this.handleChangeDuration() }>Change test duration</a>
+                <TestDurationControl />
 
                 { this.showModal(storeState) }
 

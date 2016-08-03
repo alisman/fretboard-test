@@ -4,16 +4,6 @@ import _ from 'lodash';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 
-const moo = [
-    {name: 'Page A', c: 4000 },
-    {name: 'Page B', c: 3000},
-    {name: 'Page C', c: 2000},
-    {name: 'Page D', c: 2780},
-    {name: 'Page E', c: 1890},
-    {name: 'Page F', c: 2390},
-    {name: 'Page G', c: 3490}
-];
-
 class ErrorBarChart extends React.Component {
 
     constructor(props) {
