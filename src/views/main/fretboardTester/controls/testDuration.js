@@ -8,7 +8,7 @@ class TestDuration extends React.Component {
 
         //alert(e.target.selectedOptions[0].value);
 
-        this.dispatch(actionCreators.changeTestDuration(e.target.selectedOptions[0].value, false));
+        this.dispatch(actionCreators.changeTestDuration(parseInt(e.target.selectedOptions[0].value,10), false));
 
     }
 
@@ -18,14 +18,29 @@ class TestDuration extends React.Component {
 
     }
 
+    getStoreState() {
+
+        return this.context.store.getState();
+
+    }
+
+    makeOption(value, selectedValue){
+        return <option value={value}>{value}</option>
+    }
+
     render(){
 
+        let state = this.getStoreState();
+        let selectedValue = state.getIn(['noteSelection','testDuration']);
+
         return(
-            <select onChange={ this.changeDuration.bind(this) }>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
+
+            <select className="select-testDuration" value={selectedValue} onChange={ this.changeDuration.bind(this) }>
+                { this.makeOption(10, selectedValue) }
+                { this.makeOption(20, selectedValue) }
+                { this.makeOption(30, selectedValue) }
+                { this.makeOption(40, selectedValue) }
+                { this.makeOption(60, selectedValue) }
             </select>
         );
 
