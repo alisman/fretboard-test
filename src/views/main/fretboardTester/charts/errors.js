@@ -44,9 +44,9 @@ class ErrorBarChart extends React.Component {
             <ResponsiveContainer>
             <BarChart data={arr}>
                 <XAxis dataKey='name'/>
-                <YAxis domain={[0, 20]} />
+                <YAxis domain={[0, 20]}   />
                 <CartesianGrid strokeDasharray='3 3'/>
-                <Bar dataKey='c' fill='#8884d8'/>
+                <Bar dataKey='c' animationDuration={500} fill='#8884d8'/>
             </BarChart>
                 </ResponsiveContainer>
         );
