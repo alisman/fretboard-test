@@ -18,7 +18,7 @@ export default (state, noteObj) => {
             //correct selection!
 
             newState = state.updateIn(['currentChallenge', 'correct'],
-                    list => list.push( noteObj )
+                    list => list.push( Map({ note: state.getIn(['currentChallenge','currentNote']) } ) )
             );
 
             newState = newState.setIn(['currentChallenge', 'activeStringIndex'],
@@ -26,15 +26,39 @@ export default (state, noteObj) => {
 
             newState = newState.setIn(['currentChallenge', 'currentNote'], getRandomNote());
 
+            newState = newState.updateIn(['testHistory'], (testHistory) => {
+
+                let historyItem = Map({
+                    correct: newState.getIn(['currentChallenge', 'correct']),
+                    error: newState.getIn(['currentChallenge', 'error'])
+                });
+
+                testHistory = testHistory.pop();
+                return testHistory.push(historyItem);
+
+            });
+
         } else {
 
-            //incorrect selection
+            //newState = state.updateIn(['currentChallenge', 'error'],
+            //        list => list.push(noteObj)
+            //);
 
             newState = state.updateIn(['currentChallenge', 'error'],
-                    list => list.push(noteObj)
+                    list => list.push( Map({ note: state.getIn(['currentChallenge','currentNote']) } ) )
             );
 
+            newState = newState.updateIn(['testHistory'], (testHistory) => {
 
+                let historyItem = Map({
+                    correct: newState.getIn(['currentChallenge', 'correct']),
+                    error: newState.getIn(['currentChallenge', 'error'])
+                });
+
+                testHistory = testHistory.pop();
+                return testHistory.push(historyItem);
+
+            });
 
         }
 

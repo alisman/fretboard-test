@@ -8,7 +8,7 @@ import completeTest from '../lib/completeTest';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
-const initialState = Immutable.fromJS({strings: buildFretboard(), testDuration:10, testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
+const initialState = Immutable.fromJS({strings: buildFretboard(), testDuration:1000, testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
 
 const actionTypes = {
     SELECT_NOTE: 'SELECT_NOTE',
@@ -48,7 +48,17 @@ export default {
 
             case actionTypes.NEW_TEST:
 
-                state = state.set("currentChallenge", buildChallenge(action.started));
+                state = state.set('currentChallenge', buildChallenge(action.started));
+
+                // push a new test into history
+                state = state.updateIn(['testHistory'], (testHistory) => {
+                    let historyItem = {
+                        correct: [],
+                        error: []
+                    };
+
+                    return testHistory.push(Map(historyItem));
+                });
 
                 return state;
 

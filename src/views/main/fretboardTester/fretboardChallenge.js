@@ -13,14 +13,6 @@ export default class FretboardChallenge extends React.Component {
 
     handleTestComplete() {
 
-        if (window.localStorage) {
-            //let history = window.localStorage.getItem("fretboardTestHistory");
-            //
-            //if (history) {
-            //    history.test.push()
-            //}
-        }
-
         this.context.store.dispatch(actionCreators.testComplete());
     }
 
@@ -29,9 +21,12 @@ export default class FretboardChallenge extends React.Component {
     }
 
     buildClock(storeState) {
-        return <div className="report-badge"><i className="fa fa-clock-o"></i><br />
-            <Clock duration={ storeState.getIn(['noteSelection','testDuration']) } onComplete={ this.handleTestComplete.bind(this) }/>
-        </div>
+        return (
+            <div className="report-badge">
+                <i className="fa fa-clock-o"></i><br />
+                <Clock duration={ storeState.getIn(['noteSelection','testDuration']) } onComplete={ this.handleTestComplete.bind(this) }/>
+            </div>
+        );
     }
 
     startNewTest() {

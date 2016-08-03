@@ -1,4 +1,4 @@
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'Recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'Recharts';
 import React from 'react';
 import _ from 'lodash';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -23,7 +23,7 @@ class SimpleLineChart extends React.Component {
         return (
             <ResponsiveContainer>
             <LineChart data={data}>
-                <YAxis label="# Correct" domain={[0, 'dataMax + 10']} />
+                <YAxis label="# Correct" domain={[0, 20]} />
                 <XAxis label="Rounds" dataKey="name" />
                 <CartesianGrid strokeDasharray="3 3"  />
                 <Line type="monotone" dataKey="correct"  stroke="orange" />
