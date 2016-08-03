@@ -40,7 +40,6 @@ class ErrorBarChart extends React.Component {
             arr.push({name: key, c: item});
         });
 
-
         return (
             <ResponsiveContainer>
             <BarChart data={arr}>

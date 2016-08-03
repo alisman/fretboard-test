@@ -6,7 +6,7 @@ class RestartModal extends React.Component {
 
     confirm(){
 
-        this.context.store.dispatch(actionCreators.changeTestDuration(15,true));
+        this.context.store.dispatch(actionCreators.changeTestDuration(this.props.pendingDurationChange,true));
 
     }
 

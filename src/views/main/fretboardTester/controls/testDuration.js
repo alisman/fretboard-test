@@ -23,8 +23,10 @@ class TestDuration extends React.Component {
         return(
             <select onChange={ this.changeDuration.bind(this) }>
                   <option value="20">20</option>
-                      <option value="30">30</option>
-                </select>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
+            </select>
         );
 
     }

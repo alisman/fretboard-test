@@ -28,7 +28,7 @@ export class IndexPage extends React.Component {
 
         switch(storeState.get('noteSelection').get('currentModal')) {
             case "CHANGE_DURATION_CONFIRMATION":
-                return <RestartModal show={false} />;
+                return <RestartModal pendingDurationChange={ storeState.getIn(['noteSelection','pendingDurationChange']) } show={false} />;
         }
 
     }
@@ -49,8 +49,7 @@ export class IndexPage extends React.Component {
 
             challenge = <FretboardChallenge key={storeState.get('noteSelection').get('currentChallenge').get('id')}
                                             onNoteClick={(note) => this.handleNoteClick(note) }
-                                            fretboardData={ storeState.get("noteSelection").get('strings') }
-                                            challenge={ storeState.get('noteSelection').get('currentChallenge') }
+
                 />;
 
         } else {

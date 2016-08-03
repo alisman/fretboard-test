@@ -5,7 +5,7 @@ import sinon from 'sinon';
 
 import TestDuration from './testDuration';
 
-describe.only('<TestDuration />', () => {
+describe('<TestDuration />', () => {
     let wrapper, dispatchStub;
 
     beforeEach(() => {

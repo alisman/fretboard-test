@@ -7,7 +7,13 @@ export default class IndexPage extends React.Component {
         super();
         this.state = {
             timeLeft:100
-        }
+        };
+    }
+
+    componentWillUnmount() {
+
+        clearTimeout(this.timerInterval);
+
     }
 
     componentDidMount() {
@@ -35,5 +41,7 @@ export default class IndexPage extends React.Component {
             </div>
         )
     }
+
+
 }
 

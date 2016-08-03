@@ -5,6 +5,7 @@ import { default as buildChallenge } from '../lib/buildChallenge';
 import { default as buildFretboard } from '../lib/buildFretboard';
 import { default as handleSelection } from '../lib/handleSelection';
 import completeTest from '../lib/completeTest';
+import handleDurationChange from '../lib/handleDurationChange';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
@@ -64,20 +65,7 @@ export default {
 
             case actionTypes.CHANGE_TEST_DURATION:
 
-                if (action.confirmed === true)  {
-
-                    state = state.merge({
-                       currentModal: null,
-                        testDuration: action.newDuration,
-                        currentChallenge: buildChallenge(false),
-                        testHistory: List()
-                    });
-
-                } else {
-                    state = state.set("currentModal", "CHANGE_DURATION_CONFIRMATION");
-                }
-
-                return state;
+                return handleDurationChange(state, action);
 
             case actionTypes.CANCEL_CURRENT_MODAL:
 

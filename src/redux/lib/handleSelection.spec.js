@@ -21,7 +21,7 @@ describe('selectNote', () => {
 
     });
 
-    it('adds note to correct selection list if note is correct', ()=>{
+    it.skip('adds note to correct selection list if note is correct', ()=>{
 
         state = state.setIn(['currentChallenge','currentNote'],'E');
 
@@ -38,7 +38,7 @@ describe('selectNote', () => {
 
     });
 
-    it('adds note to error list if note is incorrect', ()=>{
+    it.skip('adds note to error list if note is incorrect', ()=>{
 
         state.setIn(['currentChallenge','currentNote'],'E');
 
