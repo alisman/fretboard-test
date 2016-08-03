@@ -19,7 +19,7 @@ class RestartModal extends React.Component {
     render(){
 
         return (<div className="static-modal">
-            <Modal.Dialog>
+            <Modal.Dialog className="modal-changeTestDuration">
 
                 <Modal.Body>
                     This requires clearing your history. Are you sure you want to do that?

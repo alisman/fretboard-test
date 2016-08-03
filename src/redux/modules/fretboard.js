@@ -9,7 +9,7 @@ import handleDurationChange from '../lib/handleDurationChange';
 
 const SELECT_NOTE = 'SELECT_NOTE';
 
-const initialState = Immutable.fromJS({strings: buildFretboard(), testDuration:30, testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
+export const initialState = Immutable.fromJS({strings: buildFretboard(), testDuration:30, testHistory:[], currentChallenge: buildChallenge(), errorLog: []});
 
 const actionTypes = {
     SELECT_NOTE: 'SELECT_NOTE',
