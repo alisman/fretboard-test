@@ -73,7 +73,7 @@ export class IndexPage extends React.Component {
 
                 </div>
 
-                <TestDurationControl />
+                <TestDurationControl testDuration={storeState.getIn(['noteSelection','testDuration'])} />
 
                 { this.showModal(storeState) }
 

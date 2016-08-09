@@ -30,8 +30,8 @@ class TestDuration extends React.Component {
 
     render(){
 
-        let state = this.getStoreState();
-        let selectedValue = state.getIn(['noteSelection','testDuration']);
+        //let state = this.getStoreState();
+        let selectedValue = this.props.testDuration;
 
         return(
 
