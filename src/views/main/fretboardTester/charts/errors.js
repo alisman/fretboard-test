@@ -20,6 +20,7 @@ class ErrorBarChart extends React.Component {
             'D#': 0,
             'E': 0,
             'F': 0,
+            'F#':0,
             'G': 0,
             'G#': 0,
             'A': 0,
