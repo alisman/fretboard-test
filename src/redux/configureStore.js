@@ -5,6 +5,7 @@ import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { rootReducer, actions, initialState } from './rootReducer';
+import Immutable from 'immutable';
 
 export const configureStore = ({
     historyType = browserHistory,
@@ -23,10 +24,27 @@ export const configureStore = ({
 
     let tools = [];
     if (__DEBUG__) {
+
         const DevTools = require('containers/DevTools/DevTools').default;
         let devTools = window.devToolsExtension ? window.devToolsExtension : DevTools.instrument;
         if (typeof devTools === 'function') {
-            tools.push(devTools());
+            tools.push(devTools({
+
+                deserializeState: (state) => {
+
+                    return Immutable.fromJS(state);
+                },
+
+                deserializeAction: (action) => {
+                    if (action.noteObj) {
+                        action.noteObj = Immutable.fromJS(action.noteObj);
+                        return action;
+                    } else {
+                        return action;
+                    }
+                }
+
+            }));
         }
     }
 
