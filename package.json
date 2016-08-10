@@ -8,13 +8,16 @@
     "build": "npm run clean && ./node_modules/.bin/cross-env NODE_ENV=production webpack",
     "test": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/karma/bin/karma start karma.conf.js --watch",
     "test:watch": "npm run test -- --watch",
-    "test:lint": "eslint src/** --ext .js --ext .jsx --ignore-path .gitignore --cache"
+    "test:lint": "eslint src/** --ext .js --ext .jsx --ignore-path .gitignore --cache",
+    "serve": "node ./server.js"
+
   },
   "author": "Ari Lerner <ari@fullstack.io>",
   "license": "ISC",
   "dependencies": {
     "bootstrap-webpack": "0.0.5",
     "classnames": "^2.2.5",
+    "express": "^4.14.0",
     "font-awesome": "^4.6.3",
     "react": "15.3.0",
     "react-addons-pure-render-mixin": "^15.3.0",
